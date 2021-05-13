@@ -1,15 +1,17 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 import datetime as dt 
 
-def convert_date(date):
-    day_num = dt.date.weekday(date)
+def convert_date(day, month):
+
     
     days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    months = ['January, February', 'March', 'April', 'May', 'June', 'July' ,'August', 'September', 'October', 'November', 'December']
     
-    day_str = days[day_num]
+    day_str = days[day]
+    month_str = months[month]
     
-    return day_str
+    return {'day': day_str, 'month': month_str}
 
 # Create your views here.
 def welcome(request):
@@ -20,12 +22,12 @@ def welcome(request):
 def news_of_day(request):
     today = dt.date.today()
     
-    day = convert_date(today)
+    converted = convert_date(today.weekday(), today.month -2)
     
     markup = f''' 
                 <html>
                     <body>
-                        <h1>{day} - {today.month} - {today.year} </h1>
+                        <h1>{converted['day']} - {converted['month']} - {today.year} </h1>
                     </body>
                 </html>
               '''
@@ -35,14 +37,18 @@ def news_of_day(request):
 
 def past_days_news(request, past_date):
     
-    query_date = dt.datetime.strptime(past_date, '%Y-%m=%d').date()
+    try:
+        query_date = dt.datetime.strptime(past_date, '%Y-%m-%d').date()
+        
+    except ValueError:
+        raise Http404()
 
-    day = convert_date(query_date)
+    converted = convert_date(query_date.weekday(), query_date.month)
     
     markup = f''' 
             <html>
                 <body>
-                    <h1>{day} - {query_date.month} - {query_date.year} </h1>
+                    <h1>{converted['day']} {query_date.strftime("%d")} {converted['month']} {query_date.year} </h1>
                 </body>
             </html>
             '''
