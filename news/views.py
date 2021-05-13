@@ -42,7 +42,7 @@ def past_days_news(request, past_date):
     markup = f''' 
             <html>
                 <body>
-                    <h1>{day} - {today.month} - {today.year} </h1>
+                    <h1>{day} - {query_date.month} - {query_date.year} </h1>
                 </body>
             </html>
             '''
