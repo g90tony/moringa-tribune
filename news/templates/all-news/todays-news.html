@@ -1,5 +1,27 @@
 {% extends 'all-news/base.html' %}
 <!-- start of content block -->
 {% block content %} {{ block.super }}
-<!-- end of content block -->
-{% endblock content %}
+
+<div class="container">
+  <div class="row">
+    <!-- start of for loop -->
+    {% for news_item in news %}
+
+    <div class="card news-card text-white bg-light shadow border-0">
+      <div class="card-body">
+        <h5 class="card-title text-dark">{{news_item.title}}</h5>
+        <p class="card-text text-dark">Text</p>
+      </div>
+    </div>
+
+    <!-- end of for loop -->
+    {% empty %}
+    <div class="row w-100">
+      <h5 class="text-center w-100">There No News Items</h5>
+    </div>
+
+    {% endfor %}
+  </div>
+  <!-- end of content block -->
+  {% endblock content %}
+</div>
