@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-white shadow mb-5">
-  <a class="navbar-brand" href="{% url 'news:index' %}">Navbar</a>
+  <a class="navbar-brand" href="{% url 'news:Todays News' %}">Navbar</a>
   <button
     class="navbar-toggler d-lg-none"
     type="button"
@@ -19,5 +19,16 @@
         >
       </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'search_results %}">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
   </div>
 </nav>
