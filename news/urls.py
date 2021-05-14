@@ -5,7 +5,6 @@ from . import views
 app_name = 'news'
 
 urlpatterns = [
-    path('', views.welcome, name='index'),
-    re_path('^today/', views.news_of_day, name='Todays News'),
+    re_path('^$', views.news_of_day, name='Todays News'),
     re_path(r'^past-news/(?P<past_date>[0-9]{4}-[0-9]{2}-[0-9]{2})/$', views.past_days_news, name='Past News')
 ]
