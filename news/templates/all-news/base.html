@@ -1,3 +1,4 @@
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,12 +9,37 @@
     {% else %}
     <title>Moringa Tribune</title>
     {% endif %}
+
+    <!-- styles block -->
+    {% block styles %}
+
+    <!-- django bootstrap -->
+    {% bootstrap_css %}
+
+    <!-- static stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/base-news.css' %}" />
+    <!-- end of style block -->
+    {% endblock styles %}
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
+    <!-- included navbar -->
+    {% include 'navbar.html' %}
+
+    <!-- start of content block -->
     {% block content %}
     <h1>News for {{date | date:'l d F Y'}}</h1>
+
+    <!-- end of content bloxk -->
     {% endblock content %}
+
+    <!-- start of content block -->
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{bootstrap_javascript}}
+
+    <!-- end of content block -->
+    {% endblock scripts %}
   </body>
 </html>
