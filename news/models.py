@@ -18,3 +18,13 @@ class Tag(models.Model):
     
     def __str__(self):
         return self.name
+    
+class Article(models.Model):
+    title = models.CharField(max_length=60)
+    post = models.TextField()
+    editor = models.ForeignKey(Editor)
+    tag = models.ManyToManyField(Tag)
+    pub_date = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return self.title
