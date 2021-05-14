@@ -32,8 +32,9 @@
 
     <!-- start of content block -->
     {% block content %}
-    <h1>News for {{date | date:'l d F Y'}}</h1>
-
+    <div class="px-5 w-100">
+      <p>News for {{date | date:'l d F Y'}}</p>
+    </div>
     <!-- end of content bloxk -->
     {% endblock content %}
 
