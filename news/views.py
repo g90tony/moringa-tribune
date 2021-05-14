@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse, Http404
+from django.http import  Http404
+from .models import Article
 import datetime as dt 
 
 
@@ -7,12 +8,12 @@ import datetime as dt
 
 def news_of_day(request):
     today = dt.date.today() 
+    news = Article.todays_news()
     
-    return render(request, 'all-news/todays-news.html', {'date': today,})
+    return render(request, 'all-news/todays-news.html', {'date': today, 'news': news})
 
 
 def past_days_news(request, past_date):
-    
     try:
         query_date = dt.datetime.strptime(past_date, '%Y-%m-%d').date()
         
@@ -25,3 +26,8 @@ def past_days_news(request, past_date):
         
             
     return render(request, 'all-news/past-news.html', {'date': query_date})
+
+def search_news(request):
+    if 'article' in request.GET and request.GET['article']:
+        search_term = request.GET.get('article')
+        article_results = Article
