@@ -17,6 +17,7 @@
       <div class="card-body">
         <h5 class="card-title text-dark">{{item.title}}</h5>
         <p class="card-text text-dark">Text</p>
+        <a href="{% url 'news:View Article' item.id">Continue Reading...</a>
       </div>
     </div>
     {% endfor %} {% endif %}
