@@ -32,7 +32,7 @@ def search_news(request):
         search_term = request.GET.get('article')
         article_results = Article.search_by_title(search_term)
         
-        search_header = f'{search_term}'
+        search_header = f'"{search_term}"'
         
         return render(request, 'all-news/search.html', {"search_header":search_header, "articles" : article_results})
     
