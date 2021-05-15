@@ -19,10 +19,14 @@
         >
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" action="{% url 'search_results %}">
+    <form
+      class="form-inline my-2 my-lg-0"
+      action="{% url 'news:Search Results' %}"
+    >
       <input
         class="form-control mr-sm-2"
-        type="search"
+        type="text"
+        name="article"
         placeholder="Search"
         aria-label="Search"
       />
