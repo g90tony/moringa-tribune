@@ -4,4 +4,12 @@ h1 {
 
 .news-card {
   width: 250px;
+  margin: 30px;
+  height: 350px;
+}
+
+.news-card img {
+  object-fit: cover;
+  height: 75%;
+  width: 100%;
 }
