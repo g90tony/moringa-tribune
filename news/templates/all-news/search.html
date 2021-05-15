@@ -1,8 +1,10 @@
 {% extends 'all-news/base.html' %} {% block content %}
 <div class="container">
   <div class="row">
-    {% if article %}
-    <h2>Found {{articles|length }} of searched term {{search_header}}</h2>
+    {% if articles %}
+    <h2 class="mb-5">
+      Found {{articles| length }} of searched term {{search_header}}
+    </h2>
     {% else %}
     <h2>Found 0 of searched term {{search_header}}</h2>
     {% endif %}
@@ -10,7 +12,8 @@
 
   <div class="row">
     {% if articles %} {% for item in articles %}
-    <div class="card news-card text-white bg-light shadow border-0">
+    <div class="card news-card text-white bg-light shadow border-0 m-5">
+      <img class="card-img-top" src="{{item.article_img.url}}" alt="" />
       <div class="card-body">
         <h5 class="card-title text-dark">{{item.title}}</h5>
         <p class="card-text text-dark">Text</p>
