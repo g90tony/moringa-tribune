@@ -39,3 +39,13 @@ def search_news(request):
     else:
         search_header = "You haven't searched for any term"
         return render(request, 'all-news/search.html', {'search_header': search_header})
+    
+    
+def article(request, article_id):
+    try:
+        requested_article = Article.objects.get(id = article_id)
+        
+    except Article.DoesNotExist:
+        raise Http404()
+    
+    return render(request, 'all-news/article.html', {'article':requested_article})
