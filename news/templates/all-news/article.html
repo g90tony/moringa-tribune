@@ -1,0 +1,30 @@
+{% extends 'all-news/base.html' %}
+<!-- start of content block -->
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <img
+      src="{{article.article_img.url}}"
+      alt=""
+      class="w-100 img-responsive rounded shadow"
+    />
+  </div>
+  <div class="container p-3">
+    <div class="row">
+      <h1 class="text-center">{{article.title}}</h1>
+    </div>
+    <div class="row">
+      <p>
+        <span class="font-weight-bold">{{article.pub_date|timesince}} ago</span>
+        <br />
+        by {{article.editor.first_name}}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <p>{{article.post}}</p>
+  </div>
+</div>
+
+{% endblock content %}
