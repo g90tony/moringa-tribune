@@ -2,22 +2,23 @@
 <div class="container">
   <div class="row">
     {% if articles %}
-    <h2 class="mb-5">
+    <h2 class="mb-5 h3 text-olive font-weight-bold">
       Found {{articles| length }} of searched term {{search_header}}
     </h2>
     {% else %}
-    <h2>Found 0 of searched term {{search_header}}</h2>
+    <h2 class="mb-5 h3 text-olive font-weight-bold">
+      Found 0 of searched term {{search_header}}
+    </h2>
     {% endif %}
   </div>
 
-  <div class="row">
+  <div class="row justify-content-center">
     {% if articles %} {% for item in articles %}
-    <div class="card news-card text-white bg-light shadow border-0 m-5">
+    <div class="card news-card text-white bg-light shadow border-0 m-2">
       <img class="card-img-top" src="{{item.article_img.url}}" alt="" />
       <div class="card-body">
         <h5 class="card-title text-dark">{{item.title}}</h5>
-        <p class="card-text text-dark">Text</p>
-        <a href="{% url 'news:View Article' item.id">Continue Reading...</a>
+        <a href="{% url 'news:View Article' item.id %}">Read</a>
       </div>
     </div>
     {% endfor %} {% endif %}

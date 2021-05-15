@@ -1,5 +1,5 @@
 .custom-navbar {
-  background-color: #990000 !important;
+  background-color: #808000 !important;
   color: #fff !important;
 }
 
@@ -7,4 +7,19 @@
   text-decoration: none !important;
   color: #fff !important;
   font-weight: 700;
+}
+
+.custom-navbar li {
+  font-size: 14px;
+}
+
+.custom-navbar .btn {
+  background-color: #fff;
+  color: #808000;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.custom-navbar input {
+  font-size: 13px;
 }

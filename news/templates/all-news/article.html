@@ -2,7 +2,7 @@
 <!-- start of content block -->
 {% block content %}
 
-<div class="container">
+<div class="container article-view">
   <div class="row">
     <img
       src="{{article.article_img.url}}"
@@ -12,18 +12,21 @@
   </div>
   <div class="container p-3">
     <div class="row">
-      <h1 class="text-center">{{article.title}}</h1>
+      <h1 class="text-center h1 font-weight-bold text-olive">
+        {{article.title}}
+      </h1>
     </div>
     <div class="row">
-      <p>
-        <span class="font-weight-bold">{{article.pub_date|timesince}} ago</span>
-        <br />
-        by {{article.editor.first_name}}
+      <p class="font-weight-bold mb-0 mt-3 text-olive">
+        {{article.pub_date|timesince}} ago
       </p>
     </div>
+    <div class="row">
+      <p>by {{article.editor.first_name}}</p>
+    </div>
   </div>
-  <div class="row">
-    <p>{{article.post}}</p>
+  <div class="row w-100 mx-auto">
+    <p class="p-2">{{article.post}}</p>
   </div>
 </div>
 

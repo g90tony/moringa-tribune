@@ -22,6 +22,7 @@
     <!-- static stylesheet -->
     <link rel="stylesheet" href="{% static 'css/base-news.css' %}" />
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/article.css' %}" />
     <!-- end of style block -->
     {% endblock styles %}
     <meta name="description" content="" />
@@ -34,7 +35,9 @@
     <!-- start of content block -->
     {% block content %}
     <div class="px-5 w-100">
-      <p>News for {{date | date:'l d F Y'}}</p>
+      <p class="font-weight-bold text-olive">
+        News for {{date | date:'l d F Y'}}
+      </p>
     </div>
     <!-- end of content bloxk -->
     {% endblock content %}
