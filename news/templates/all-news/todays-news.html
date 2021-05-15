@@ -7,7 +7,8 @@
     <!-- start of for loop -->
     {% for news_item in news %}
 
-    <div class="card news-card text-white bg-light shadow border-0">
+    <div class="card news-card text-white bg-light shadow border-0 m-2">
+      <img class="card-img-top" src="{{news_item.article_img.url}}" alt="" />
       <div class="card-body">
         <h5 class="card-title text-dark">{{news_item.title}}</h5>
         <p class="card-text text-dark">Text</p>
