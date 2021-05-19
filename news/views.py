@@ -1,6 +1,9 @@
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.http import  Http404
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 from .models import Article, NewsLetterRecipients
 import datetime as dt 
 
@@ -11,6 +14,7 @@ from .email import send_welcome_email
 def news_of_day(request):
     today = dt.date.today() 
     news = Article.todays_news()
+    user = request.user
     
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
@@ -25,7 +29,7 @@ def news_of_day(request):
     else: 
         form = NewsLetterForm()
         
-    return render(request, 'all-news/todays-news.html', {'date': today, 'news': news, 'letterForm': form})
+    return render(request, 'all-news/todays-news.html', {'date': today, 'news': news, 'letterForm': form, "user": user})
 
 
 def past_days_news(request, past_date):
@@ -63,7 +67,7 @@ def search_news(request):
         search_header = "You haven't searched for any term"
         return render(request, 'all-news/search.html', {'search_header': search_header, 'letterForm': form})
     
-    
+@login_required(login_url='/accounts/login/')
 def article(request, article_id):
     try:
         requested_article = Article.objects.get(id = article_id)
@@ -72,4 +76,3 @@ def article(request, article_id):
         raise Http404()
     
     return render(request, 'all-news/article.html', {'article':requested_article})
-
