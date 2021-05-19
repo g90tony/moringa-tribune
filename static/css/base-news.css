@@ -34,3 +34,31 @@
   transition: 400ms ease-in;
   text-decoration: none;
 }
+
+.btn-light {
+  background-color: #fff !important;
+  color: #808000 !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  margin: auto !important;
+  width: 100%;
+}
+
+.btn-dark {
+  background-color: #808000 !important;
+  border: #808000 1px solid !important;
+  padding: 5px;
+  border-radius: 5px;
+  color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  width: 100%;
+  margin: auto !important;
+}
+
+.btn-nav {
+  background-color: #fff;
+  color: #808000;
+  font-weight: 700;
+  font-size: 13px;
+}
