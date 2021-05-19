@@ -33,7 +33,7 @@ SECRET_KEY = config('SECRET_KEY')
 if MODE == 'dev':
     DEBUG = True 
 else:
-    DEBUG = False
+    DEBUG = True
 
 ALLOWED_HOSTS = []
 
