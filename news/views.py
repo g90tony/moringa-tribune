@@ -37,17 +37,25 @@ def past_days_news(request, past_date):
     return render(request, 'all-news/past-news.html', {'date': query_date})
 
 def search_news(request):
+    if request.method == 'POST':
+        form = NewsLetterForm(request.POST)
+        if form.is_valid():
+            print('Form is valid')
+            
+    else: 
+        form = NewsLetterForm()
+        
     if 'article' in request.GET and request.GET['article']:
         search_term = request.GET.get('article')
         article_results = Article.search_by_title(search_term)
         
         search_header = f'"{search_term}"'
         
-        return render(request, 'all-news/search.html', {"search_header":search_header, "articles" : article_results})
+        return render(request, 'all-news/search.html', {"search_header":search_header, "articles" : article_results, 'letterForm': form})
     
     else:
         search_header = "You haven't searched for any term"
-        return render(request, 'all-news/search.html', {'search_header': search_header})
+        return render(request, 'all-news/search.html', {'search_header': search_header, 'letterForm': form})
     
     
 def article(request, article_id):
