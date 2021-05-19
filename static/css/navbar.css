@@ -14,10 +14,10 @@
 }
 
 .custom-navbar .btn {
-  background-color: #fff;
-  color: #808000;
-  font-weight: 700;
-  font-size: 13px;
+  background-color: #fff !important;
+  color: #808000 !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
 }
 
 .custom-navbar input {
