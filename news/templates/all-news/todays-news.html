@@ -1,13 +1,13 @@
-{% extends 'all-news/base.html' %}
-{% load bootstrap4 %}
+{% extends 'all-news/base.html' %} {% load bootstrap4 %}
 <!-- start of content block -->
 {% block content %} {{ block.super }}
 
 <div class="container">
   <div class="row justify-content-center">
+    <!-- end of for loop -->
+    {% if news %}
     <!-- start of for loop -->
     {% for news_item in news %}
-
     <div class="card news-card text-white bg-light shadow border-0 m-2">
       <img class="card-img-top" src="{{news_item.article_img.url}}" alt="" />
       <div class="card-body">
@@ -15,23 +15,22 @@
         <a href="{% url 'news:View Article' news_item.id %}">Read</a>
       </div>
     </div>
+    {% endfor %} {% else %}
 
-    <!-- end of for loop -->
-    {% empty %}
     <div class="row w-100">
       <h5 class="text-center w-100">There No News Items</h5>
     </div>
-
-    {% endfor %}
+    {% endif %}
   </div>
+  <hr class="w-100 mx-auto" />
+  <h2 class="mb-5 h5 text-olive text-center mt-4 mx-auto font-weight-bold">
+    Subscribe to our newsletter
+  </h2>
   <div class="row justify-content-center">
     <form action="{% url 'news:Todays News" method="post">
+      {% csrf_token %} {% bootstrap_form letterForm layout='inline' %}
 
-      {% csrf_token %} 
-
-      {% bootstrap_form letterForm layout='inline' %}
-
-      <input type="submit" class='btn-dark' value="Subscribe"></input>
+      <input type="submit" class="btn-dark" value="Subscribe" />
     </form>
   </div>
   <!-- end of content block -->
