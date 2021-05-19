@@ -1,10 +1,11 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.http import  Http404
-from .models import Article
+from .models import Article, NewsLetterRecipients
 import datetime as dt 
 
 from .forms import NewsLetterForm
-
+from .email import send_welcome_email
 # Create your views here.
 
 def news_of_day(request):
@@ -14,8 +15,13 @@ def news_of_day(request):
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
         if form.is_valid():
-            print('Form is valid')
+            name = form.cleaned_data['subscriber_name']
+            email = form.cleaned_data['subscriber_email']
             
+            recipient = NewsLetterRecipients(name= name, email = email)
+            recipient.save()
+            
+            HttpResponseRedirect('Todays News')
     else: 
         form = NewsLetterForm()
         
