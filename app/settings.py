@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import cloudinary
 import django_heroku
 import dj_database_url
 import os
@@ -29,7 +30,10 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if MODE == 'dev':
+    DEBUG = True 
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -45,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'news.apps.NewsConfig',
     'bootstrap4',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +162,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Configure Django App for Heroku.
 django_heroku.settings(locals()) 
+
+#Cloudinary Configurations
+cloudinary.config( 
+    cloud_name= config('CLOUDINARY_CLOUD_NAME'),
+    api_key = config('CLOUDINARY_API_KEY'),
+    api_secret = config('CLOUDINARY_SECRET_KEY'),
+) 
