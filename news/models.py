@@ -1,5 +1,6 @@
 from datetime import date
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 class Editor(models.Model):
@@ -31,7 +32,7 @@ class Article(models.Model):
     editor = models.ForeignKey(Editor, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag)
     pub_date = models.DateTimeField(auto_now_add=True)
-    article_img = models.ImageField(upload_to = 'articles/', default= 'articles/default_avatar.png')
+    article_img = CloudinaryField('image', default=None)
     
     
     def __str__(self):
