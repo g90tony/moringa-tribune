@@ -3,6 +3,7 @@ from django.http import  Http404
 from .models import Article
 import datetime as dt 
 
+from .forms import NewsLetterForm
 
 # Create your views here.
 
@@ -10,7 +11,15 @@ def news_of_day(request):
     today = dt.date.today() 
     news = Article.todays_news()
     
-    return render(request, 'all-news/todays-news.html', {'date': today, 'news': news})
+    if request.method == 'POST':
+        form = NewsLetterForm(request.POST)
+        if form.is_valid():
+            print('Form is valid')
+            
+    else: 
+        form = NewsLetterForm()
+        
+    return render(request, 'all-news/todays-news.html', {'date': today, 'news': news, 'letterForm': form})
 
 
 def past_days_news(request, past_date):
@@ -49,3 +58,4 @@ def article(request, article_id):
         raise Http404()
     
     return render(request, 'all-news/article.html', {'article':requested_article})
+
