@@ -14,16 +14,34 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavId">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <ul class="navbar-nav w-100 justify-content-center mt-2 mt-lg-0">
+      {% if user.is_authenticated == true %}
+      <li class="dropdown">
+        <button class="dropdown-toggle btn btn-default">
+          Account <span class="caret"></span>
+        </button>
+      </li>
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'news:Todays News' %}"
+        <a class="nav-link" href="{% url 'news:Todays News'%}"
           >Today's Headlines</a
         >
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/accounts/password/change">Change Password</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      {% else %}
+      <li class="nav-item active">
+        <a class="nav-link" href="/accounts/login">Login</a>
+      </li>
+      {% endif %}
     </ul>
     <form
-      class="form-inline my-2 my-lg-0"
+      class="form-inline my-2 ml-3 my-lg-0 justify-content-end"
       action="{% url 'news:Search Results' %}"
+      style="width: fit-content; display: flex; flex-flow: row nowrap"
     >
       <input
         class="form-control mr-sm-2"
