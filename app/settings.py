@@ -167,3 +167,10 @@ cloudinary.config(
     api_key = config('CLOUDINARY_API_KEY'),
     api_secret = config('CLOUDINARY_SECRET_KEY'),
 ) 
+
+#Email configurations
+EMAIL_USER_TLS = config('EMAIL_USER_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
