@@ -1,0 +1,46 @@
+{% extends 'django_registration/base.html' %}
+<!-- loaded bootstrap -->
+{%load bootstrap4 %}
+<!-- start of block content -->
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Sign Up</h5>
+        </div>
+        <div class="modal-body">
+          <form
+            action="/accounts/register/"
+            action="/accounts/register/"
+            method="post"
+          >
+            {% csrf_token %} {% bootstrap_form form %}
+
+            <div class="form-group">
+              <input type="submit" value="Sign Up" class="btn btn-dark" />
+            </div>
+
+            <input type="hidden" name="next" value="{{next}}" />
+          </form>
+          <p
+            style="
+              font-family: 'Century Gothic Bold';
+              text-align: center;
+              font-size: 12px;
+            "
+          >
+            If you already have an account,
+            <span
+              ><a class="text-olive" href="/accounts/login/"
+                >click here.</a
+              ></span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock content %}
+</div>
