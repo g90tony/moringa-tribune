@@ -2,6 +2,8 @@ from datetime import date
 from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
+
 # Create your models here.
 class Tag(models.Model):
     name = models.CharField(max_length=30)
@@ -12,7 +14,7 @@ class Tag(models.Model):
     
 class Article(models.Model):
     title = models.CharField(max_length=60)
-    post = models.TextField()
+    post = HTMLField()
     editor = models.ForeignKey(User, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag)
     pub_date = models.DateTimeField(auto_now_add=True)
