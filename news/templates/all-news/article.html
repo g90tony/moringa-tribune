@@ -26,7 +26,7 @@
     </div>
   </div>
   <div class="row w-100 mx-auto">
-    <p class="p-2">{{article.post}}</p>
+    {% autoescape on %} {{article.post | safe}} {% endautoescape %}
   </div>
 </div>
 
