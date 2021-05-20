@@ -33,6 +33,7 @@ def news_of_day(request):
 
 
 def past_days_news(request, past_date):
+    user = request.user
     try:
         query_date = dt.datetime.strptime(past_date, '%Y-%m-%d').date()
         
@@ -44,9 +45,10 @@ def past_days_news(request, past_date):
         return redirect(news_of_day)
         
             
-    return render(request, 'all-news/past-news.html', {'date': query_date})
+    return render(request, 'all-news/past-news.html', {'date': query_date, "user": user})
 
 def search_news(request):
+    user = request.user
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
         if form.is_valid():
@@ -61,18 +63,19 @@ def search_news(request):
         
         search_header = f'"{search_term}"'
         
-        return render(request, 'all-news/search.html', {"search_header":search_header, "articles" : article_results, 'letterForm': form})
+        return render(request, 'all-news/search.html', {"search_header":search_header, "articles" : article_results, 'letterForm': form, "user": user})
     
     else:
         search_header = "You haven't searched for any term"
-        return render(request, 'all-news/search.html', {'search_header': search_header, 'letterForm': form})
+        return render(request, 'all-news/search.html', {'search_header': search_header, 'letterForm': form, "user": user})
     
 @login_required(login_url='/accounts/login/')
 def article(request, article_id):
+    user = request.user
     try:
         requested_article = Article.objects.get(id = article_id)
         
     except Article.DoesNotExist:
         raise Http404()
     
-    return render(request, 'all-news/article.html', {'article':requested_article})
+    return render(request, 'all-news/article.html', {'article':requested_article, "user":user})
