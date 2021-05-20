@@ -1,0 +1,44 @@
+{% extends "all-news/base.html" %}
+<!-- included staticfiles -->
+{% load static %}
+<!-- included bootstrap -->
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Moringa Tribune</title>
+    {% endif %} {{form.media}}
+
+    <!-- django bootstrap -->
+    {% bootstrap_css %}
+
+    <!-- static stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/base-news.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/article.css' %}" />
+    <!-- end of style block -->
+    {% endblock styles %}
+  </head>
+  <body>
+    <form action="{% url Create Article %}">
+      {% csrf_token %} {% bootstrap_form form %}
+
+      <input type="submit" value="Post" class="btn-dark" />
+    </form>
+
+    {% block scripts %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{bootstrap_javascript}}
+
+    <!-- end of content block -->
+    {% endblock scripts %}
+  </body>
+</html>
