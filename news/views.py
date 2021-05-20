@@ -1,3 +1,4 @@
+from django import forms
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.http import  Http404
@@ -7,7 +8,7 @@ from django.contrib.auth.models import User
 from .models import Article, NewsLetterRecipients
 import datetime as dt 
 
-from .forms import NewsLetterForm
+from .forms import NewsLetterForm, NewArticleForm
 from .email import send_welcome_email
 # Create your views here.
 
@@ -24,6 +25,7 @@ def news_of_day(request):
             
             recipient = NewsLetterRecipients(name= name, email = email)
             recipient.save()
+            send_welcome_email(name, email)
             
             HttpResponseRedirect('Todays News')
     else: 
@@ -79,3 +81,25 @@ def article(request, article_id):
         raise Http404()
     
     return render(request, 'all-news/article.html', {'article':requested_article, "user":user})
+
+
+@login_required
+def create_article(request):
+    current_user = request.user
+    title = 'Create new Article'
+    
+    if request.method == 'POST':
+        form = NewArticleForm(request.POST, request.FILES)
+        
+        if form.is_valid() :
+            article = form.save(commit = False)
+            
+            article.editor = current_user
+            article.save()
+            
+            return redirect('Todays News')
+        
+    else:
+        form = NewArticleForm()
+    
+    return render(request, 'all-news/create.html', {'form': form, 'title':title})
