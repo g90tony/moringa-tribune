@@ -2,6 +2,11 @@
   color: #808000;
 }
 
+label {
+  font-family: "Century Gothic Bold" !important;
+  font-weight: 700;
+}
+
 .news-card {
   width: 250px;
   margin: 30px;
