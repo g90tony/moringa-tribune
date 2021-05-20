@@ -17,7 +17,9 @@
     <div class="card news-card text-white bg-light shadow border-0 m-2">
       <img class="card-img-top" src="{{item.article_img.url}}" alt="" />
       <div class="card-body">
-        <h5 class="card-title text-dark">{{item.title}}</h5>
+        <p style="font-size: 18px" class="card-title text-dark">
+          {{item.title}}
+        </p>
         <a href="{% url 'news:View Article' item.id %}">Read</a>
       </div>
     </div>
